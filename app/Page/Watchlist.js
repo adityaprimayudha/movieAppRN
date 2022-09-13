@@ -21,6 +21,7 @@ const Watchlist = ({navigation}) => {
   const [data, setData] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [filteredData, setFilteredData] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   const getDatabase = async () => {
     try {
@@ -117,10 +118,18 @@ const Watchlist = ({navigation}) => {
     }
   };
 
+  const pullMe = () => {
+    setRefresh(true);
+
+    setTimeout(() => {
+      setRefresh(false);
+    }, 100);
+  };
+
   useEffect(() => {
     getDatabase();
     return () => {};
-  }, []);
+  }, [refresh]);
 
   return (
     <>
@@ -178,6 +187,9 @@ const Watchlist = ({navigation}) => {
           numColumns={3}
           renderItem={renderItem}
           keyExtractor={item => '_' + item.id}
+          refreshControl={
+            <RefreshControl refreshing={refresh} onRefresh={() => pullMe()} />
+          }
         />
         <TouchableOpacity
           style={{

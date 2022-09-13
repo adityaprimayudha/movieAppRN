@@ -108,7 +108,7 @@ const PopularMovies = ({navigation}) => {
           keyExtractor={item => '_' + item.id}
           ListFooterComponent={renderLoader}
           onEndReached={loadMoreItems}
-          onEndReachedThreshold={1}
+          onEndReachedThreshold={0.5}
         />
         <TouchableOpacity
           style={{

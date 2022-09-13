@@ -74,9 +74,6 @@ export default function Detail({navigation, route}) {
     //console.log(savedData.length);
     if (savedData !== null) {
       for (let i = 0; i < savedData.length; i++) {
-        //console.log('entered');
-        //console.log(saveId[i].item);
-        //console.log(tempId);
         if (savedData[i].id === ide) {
           //console.log('true');
           setIsAdded(true);
